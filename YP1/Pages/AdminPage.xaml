@@ -1,15 +1,161 @@
 <UserControl x:Class="YP1.Pages.AdminPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
-        <StackPanel Margin="28">
-            <TextBlock FontSize="24"
-                       FontWeight="SemiBold"
-                       Foreground="{StaticResource PrimaryTextBrush}"
-                       Text="Администрирование" />
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="{StaticResource SecondaryTextBrush}"
-                       Text="Здесь будут жалобы, заявки на автора, заморозки и список пользователей." />
-        </StackPanel>
+    <Grid Margin="22">
+        <TabControl>
+            <TabItem Header="Жалобы">
+                <Grid Margin="12">
+                    <DataGrid x:Name="ReportsDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Кто пожаловался" Binding="{Binding ReporterName}" Width="150" />
+                            <DataGridTextColumn Header="Тип" Binding="{Binding TargetType}" Width="90" />
+                            <DataGridTextColumn Header="Объект" Binding="{Binding TargetName}" Width="180" />
+                            <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="*" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100" />
+                            <DataGridTemplateColumn Header="Действия" Width="210">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <Button Width="95"
+                                                    Margin="0,0,10,0"
+                                                    Click="ApproveReportButton_Click"
+                                                    Content="Принять" />
+                                            <Button Width="95"
+                                                    Click="RejectReportButton_Click"
+                                                    Content="Отклонить" />
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Апелляции">
+                <Grid Margin="12">
+                    <DataGrid x:Name="AppealsDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserName}" Width="150" />
+                            <DataGridTextColumn Header="Тип" Binding="{Binding EntityType}" Width="90" />
+                            <DataGridTextColumn Header="Объект" Binding="{Binding EntityName}" Width="180" />
+                            <DataGridTextColumn Header="Текст" Binding="{Binding AppealText}" Width="*" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100" />
+                            <DataGridTemplateColumn Header="Действия" Width="210">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <Button Width="95"
+                                                    Margin="0,0,10,0"
+                                                    Click="ApproveAppealButton_Click"
+                                                    Content="Принять" />
+                                            <Button Width="95"
+                                                    Click="RejectAppealButton_Click"
+                                                    Content="Отклонить" />
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Роль автора">
+                <Grid Margin="12">
+                    <DataGrid x:Name="AuthorApplicationsDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserName}" Width="160" />
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="120" />
+                            <DataGridTextColumn Header="Текст заявки" Binding="{Binding Message}" Width="*" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100" />
+                            <DataGridTemplateColumn Header="Действия" Width="210">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <Button Width="95"
+                                                    Margin="0,0,10,0"
+                                                    Click="ApproveAuthorButton_Click"
+                                                    Content="Принять" />
+                                            <Button Width="95"
+                                                    Click="RejectAuthorButton_Click"
+                                                    Content="Отклонить" />
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Замороженные">
+                <Grid Margin="12">
+                    <DataGrid x:Name="FrozenItemsDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding EntityType}" Width="100" />
+                            <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="220" />
+                            <DataGridTextColumn Header="Владелец" Binding="{Binding OwnerName}" Width="160" />
+                            <DataGridTextColumn Header="Причина" Binding="{Binding FreezeReason}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Пользователи">
+                <Grid Margin="12">
+                    <DataGrid x:Name="UsersDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding FullName}" Width="170" />
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="120" />
+                            <DataGridTextColumn Header="Почта" Binding="{Binding Email}" Width="200" />
+                            <DataGridCheckBoxColumn Header="Заморожен" Binding="{Binding IsFrozen}" Width="90" IsReadOnly="True" />
+                            <DataGridTemplateColumn Header="Роль" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Width="130"
+                                                  SelectedValue="{Binding RoleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedValuePath="Tag">
+                                            <ComboBoxItem Tag="reader">читатель</ComboBoxItem>
+                                            <ComboBoxItem Tag="author">автор</ComboBoxItem>
+                                            <ComboBoxItem Tag="administrator">администратор</ComboBoxItem>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Действия" Width="230">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <Button Width="105"
+                                                    Margin="0,0,10,0"
+                                                    Click="SaveRoleButton_Click"
+                                                    Content="Сменить роль" />
+                                            <Button Width="105"
+                                                    Click="ChangePasswordButton_Click"
+                                                    Content="Сменить пароль" />
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

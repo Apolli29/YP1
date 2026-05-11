@@ -1,15 +1,141 @@
 <UserControl x:Class="YP1.Pages.AuthorPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
-        <StackPanel Margin="28">
-            <TextBlock FontSize="24"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           VerticalAlignment="Center"
+                           FontSize="26"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource PrimaryTextBrush}"
+                           Text="Книги автора" />
+                <Button Width="170"
+                        HorizontalAlignment="Right"
+                        Click="AddBookButton_Click"
+                        Style="{StaticResource AuthActionButtonStyle}"
+                        Content="Добавить книгу" />
+            </DockPanel>
+
+            <TextBlock Grid.Row="1"
+                       Margin="0,20,0,14"
+                       FontSize="22"
                        FontWeight="SemiBold"
                        Foreground="{StaticResource PrimaryTextBrush}"
-                       Text="Страница автора" />
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="{StaticResource SecondaryTextBrush}"
-                       Text="Здесь будут книги автора, создание новых книг и работа с заморозками." />
-        </StackPanel>
-    </Grid>
+                       Text="Опубликованные книги" />
+
+            <ItemsControl x:Name="AuthorBooksItemsControl"
+                          Grid.Row="2">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,14"
+                                Padding="16"
+                                Background="White"
+                                CornerRadius="18">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Width="92"
+                                        Height="130"
+                                        Background="{Binding CoverColor}"
+                                        CornerRadius="16">
+                                    <Grid Margin="10">
+                                        <TextBlock VerticalAlignment="Bottom"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="White"
+                                                   Text="{Binding Title}"
+                                                   TextWrapping="Wrap" />
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                               Text="{Binding Title}" />
+                                    <TextBlock Margin="0,8,0,0"
+                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                               Text="{Binding GenresText}" />
+                                    <TextBlock Margin="0,8,0,0"
+                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                               Text="{Binding AverageRating, StringFormat=рейтинг: {0:F1}}" />
+                                    <TextBlock Margin="0,10,0,0"
+                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                               Text="{Binding Description}"
+                                               TextWrapping="Wrap"
+                                               MaxHeight="70" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2"
+                                            VerticalAlignment="Center">
+                                    <Button Width="130"
+                                            Margin="0,0,0,10"
+                                            Click="OpenBookButton_Click"
+                                            Style="{StaticResource SecondaryButtonStyle}"
+                                            Content="Открыть" />
+                                    <Button Width="130"
+                                            Click="EditBookButton_Click"
+                                            Style="{StaticResource AuthActionButtonStyle}"
+                                            Content="Редактировать" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel Grid.Row="3"
+                        Margin="0,24,0,0">
+                <TextBlock FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource PrimaryTextBrush}"
+                           Text="Замороженные книги" />
+
+                <ItemsControl x:Name="FrozenBooksItemsControl"
+                              Margin="0,14,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,14"
+                                    Padding="16"
+                                    Background="#FFF6F0"
+                                    CornerRadius="18">
+                                <StackPanel>
+                                    <TextBlock FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                               Text="{Binding Title}" />
+                                    <TextBlock Margin="0,10,0,0"
+                                               Foreground="{StaticResource AccentBrush}"
+                                               Text="{Binding FreezeReason}"
+                                               TextWrapping="Wrap" />
+                                    <WrapPanel Margin="0,14,0,0">
+                                        <Button Width="150"
+                                                Margin="0,0,10,0"
+                                                Click="EditBookButton_Click"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Content="Исправить книгу" />
+                                        <Button Width="190"
+                                                Click="AppealFrozenBookButton_Click"
+                                                Style="{StaticResource AuthActionButtonStyle}"
+                                                Content="Оспорить заморозку" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

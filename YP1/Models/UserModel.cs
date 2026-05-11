@@ -17,7 +17,7 @@ namespace YP1.Models
 
         public bool IsAuthor
         {
-            get { return RoleName == "author" || RoleName == "administrator"; }
+            get { return RoleName == "author"; }
         }
     }
 }

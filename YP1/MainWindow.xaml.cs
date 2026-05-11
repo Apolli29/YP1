@@ -1,5 +1,4 @@
 using System.Windows;
-using System.Windows.Controls;
 using YP1.Data;
 using YP1.Models;
 using YP1.Pages;
@@ -44,13 +43,13 @@ namespace YP1
         private void AdminButton_Click(object sender, RoutedEventArgs e)
         {
             PageTitleTextBlock.Text = "Администрирование";
-            PageHost.Content = new AdminPage();
+            PageHost.Content = new AdminPage(this);
         }
 
         private void AuthorButton_Click(object sender, RoutedEventArgs e)
         {
             PageTitleTextBlock.Text = "Страница автора";
-            PageHost.Content = new AuthorPage();
+            PageHost.Content = new AuthorPage(this);
         }
 
         private void FrozenButton_Click(object sender, RoutedEventArgs e)
