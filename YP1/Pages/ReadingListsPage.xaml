@@ -1,15 +1,180 @@
 <UserControl x:Class="YP1.Pages.ReadingListsPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid>
-        <StackPanel Margin="28">
-            <TextBlock FontSize="24"
-                       FontWeight="SemiBold"
-                       Foreground="{StaticResource PrimaryTextBrush}"
-                       Text="Списки книг" />
-            <TextBlock Margin="0,8,0,0"
-                       Foreground="{StaticResource SecondaryTextBrush}"
-                       Text="Здесь будут переключение списков, поиск, сортировка и фильтры для книг пользователя." />
-        </StackPanel>
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Margin="0,0,0,18">
+            <Button x:Name="PlannedListButton"
+                    Width="140"
+                    Margin="0,0,12,0"
+                    Click="PlannedListButton_Click"
+                    Style="{StaticResource AuthActionButtonStyle}"
+                    Content="В планах" />
+            <Button x:Name="ReadingListButton"
+                    Width="140"
+                    Margin="0,0,12,0"
+                    Click="ReadingListButton_Click"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="Читаю" />
+            <Button x:Name="CompletedListButton"
+                    Width="140"
+                    Margin="0,0,12,0"
+                    Click="CompletedListButton_Click"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="Прочитано" />
+            <Button x:Name="AbandonedListButton"
+                    Width="140"
+                    Click="AbandonedListButton_Click"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="Заброшено" />
+        </WrapPanel>
+
+        <Border Grid.Row="1"
+                Padding="18"
+                Background="White"
+                CornerRadius="18">
+            <WrapPanel VerticalAlignment="Center">
+                <TextBox x:Name="SearchTextBox"
+                         Width="260"
+                         Margin="0,0,12,0"
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource TextBoxStyle}" />
+
+                <ComboBox x:Name="SortComboBox"
+                          Width="150"
+                          Style="{StaticResource FilterComboBoxStyle}">
+                    <ComboBoxItem IsSelected="True" Tag="name">По имени</ComboBoxItem>
+                    <ComboBoxItem Tag="rating">По оценке</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox x:Name="GenreComboBox"
+                          Width="190"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="GenreId"
+                          Style="{StaticResource FilterComboBoxStyle}" />
+
+                <Button Width="110"
+                        Margin="0,0,12,0"
+                        Click="ApplyFiltersButton_Click"
+                        Style="{StaticResource AuthActionButtonStyle}"
+                        Content="Показать" />
+
+                <Button Width="110"
+                        Click="ResetFiltersButton_Click"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Content="Сбросить" />
+            </WrapPanel>
+        </Border>
+
+        <TextBlock x:Name="SummaryTextBlock"
+                   Grid.Row="2"
+                   Margin="6,16,0,18"
+                   Foreground="{StaticResource SecondaryTextBrush}" />
+
+        <ScrollViewer Grid.Row="3"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="BooksItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="290"
+                                Margin="0,0,18,18"
+                                Padding="16"
+                                Background="White"
+                                CornerRadius="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Border Height="170"
+                                        Background="{Binding CoverColor}"
+                                        CornerRadius="18">
+                                    <Grid Margin="16">
+                                        <TextBlock VerticalAlignment="Bottom"
+                                                   FontSize="22"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="White"
+                                                   Text="{Binding Title}"
+                                                   TextWrapping="Wrap" />
+                                    </Grid>
+                                </Border>
+
+                                <StackPanel Grid.Row="1"
+                                            Margin="0,14,0,0">
+                                    <TextBlock FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                               Text="{Binding Title}"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Margin="0,6,0,0"
+                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                               Text="{Binding AuthorName}" />
+                                    <TextBlock Margin="0,6,0,0"
+                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                               Text="{Binding AverageRating, StringFormat=рейтинг: {0:F1}}" />
+                                    <TextBlock Margin="0,6,0,0"
+                                               Foreground="{StaticResource SecondaryTextBrush}"
+                                               Text="{Binding GenresText}"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="2"
+                                           Margin="0,14,0,0"
+                                           Foreground="{StaticResource PrimaryTextBrush}"
+                                           Text="{Binding Description}"
+                                           TextWrapping="Wrap"
+                                           MaxHeight="64" />
+
+                                <StackPanel Grid.Row="3"
+                                            Margin="0,16,0,0">
+                                    <ComboBox Height="38"
+                                              Margin="0,0,0,10"
+                                              SelectedValue="{Binding ListName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              SelectedValuePath="Tag"
+                                              Style="{StaticResource FilterComboBoxStyle}">
+                                        <ComboBoxItem Tag="planned">В планах</ComboBoxItem>
+                                        <ComboBoxItem Tag="reading">Читаю</ComboBoxItem>
+                                        <ComboBoxItem Tag="completed">Прочитано</ComboBoxItem>
+                                        <ComboBoxItem Tag="abandoned">Заброшено</ComboBoxItem>
+                                    </ComboBox>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Grid.Column="0"
+                                                Margin="0,0,8,0"
+                                                Click="OpenBookButton_Click"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Content="Открыть" />
+
+                                        <Button Grid.Column="1"
+                                                Click="MoveBookButton_Click"
+                                                Style="{StaticResource AuthActionButtonStyle}"
+                                                Content="Переместить" />
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

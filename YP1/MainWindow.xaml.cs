@@ -38,7 +38,7 @@ namespace YP1
         private void ListsButton_Click(object sender, RoutedEventArgs e)
         {
             PageTitleTextBlock.Text = "Списки книг";
-            PageHost.Content = new ReadingListsPage();
+            PageHost.Content = new ReadingListsPage(this);
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)
