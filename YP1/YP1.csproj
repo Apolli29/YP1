@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,8 +96,47 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\DatabaseInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\DatabaseSeeder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\LibraryRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\PasswordHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\AppSession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\AuthorApplicationModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\BookModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\FreezeAppealModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\FrozenItemModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\GenreModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ReportModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ReviewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\UserModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pages\AdminPage.xaml.cs">
@@ -153,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Scripts\CreateDatabase.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
