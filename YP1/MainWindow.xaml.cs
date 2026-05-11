@@ -32,7 +32,7 @@ namespace YP1
 
         private void CatalogButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenCatalog();
+            ShowCatalogPage();
         }
 
         private void ListsButton_Click(object sender, RoutedEventArgs e)
@@ -68,7 +68,18 @@ namespace YP1
         private void OpenCatalog()
         {
             PageTitleTextBlock.Text = "Каталог книг";
-            PageHost.Content = new CatalogPage();
+            PageHost.Content = new CatalogPage(this);
+        }
+
+        public void ShowCatalogPage()
+        {
+            OpenCatalog();
+        }
+
+        public void OpenBookPage(int bookId)
+        {
+            PageTitleTextBlock.Text = "Страница книги";
+            PageHost.Content = new BookPage(this, bookId);
         }
 
         public void RefreshCurrentUser()

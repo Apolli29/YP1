@@ -1,0 +1,264 @@
+<UserControl x:Class="YP1.Pages.BookPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Button Width="140"
+                    HorizontalAlignment="Left"
+                    Click="BackButton_Click"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Content="Назад в каталог" />
+
+            <Grid Grid.Row="1"
+                  Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="CoverBorder"
+                        Height="420"
+                        Margin="0,0,24,0"
+                        Background="#5E6C84"
+                        CornerRadius="24">
+                    <Grid Margin="22">
+                        <TextBlock x:Name="CoverTitleTextBlock"
+                                   VerticalAlignment="Bottom"
+                                   FontSize="28"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   TextWrapping="Wrap" />
+                    </Grid>
+                </Border>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="BookTitleTextBlock"
+                               FontSize="30"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               TextWrapping="Wrap" />
+
+                    <TextBlock x:Name="BookAuthorTextBlock"
+                               Margin="0,10,0,0"
+                               FontSize="16"
+                               Foreground="{StaticResource SecondaryTextBrush}" />
+
+                    <TextBlock x:Name="BookGenresTextBlock"
+                               Margin="0,8,0,0"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               TextWrapping="Wrap" />
+
+                    <TextBlock x:Name="BookRatingTextBlock"
+                               Margin="0,8,0,0"
+                               Foreground="{StaticResource SecondaryTextBrush}" />
+
+                    <Border x:Name="FrozenInfoBorder"
+                            Margin="0,16,0,0"
+                            Padding="12"
+                            Visibility="Collapsed"
+                            Background="#FBE4DC"
+                            CornerRadius="14">
+                        <TextBlock x:Name="FrozenInfoTextBlock"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   TextWrapping="Wrap" />
+                    </Border>
+
+                    <TextBlock Margin="0,18,0,6"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               Text="Описание" />
+                    <TextBlock x:Name="BookDescriptionTextBlock"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               TextWrapping="Wrap" />
+
+                    <WrapPanel Margin="0,22,0,0">
+                        <ComboBox x:Name="ListComboBox"
+                                  Width="160"
+                                  SelectedValuePath="Tag"
+                                  Style="{StaticResource FilterComboBoxStyle}">
+                            <ComboBoxItem IsSelected="True" Tag="planned">В планах</ComboBoxItem>
+                            <ComboBoxItem Tag="reading">Читаю</ComboBoxItem>
+                            <ComboBoxItem Tag="completed">Прочитано</ComboBoxItem>
+                            <ComboBoxItem Tag="abandoned">Заброшено</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Width="130"
+                                Margin="0,0,12,0"
+                                Click="AddToListButton_Click"
+                                Style="{StaticResource AuthActionButtonStyle}"
+                                Content="В список" />
+
+                        <Button Width="130"
+                                Margin="0,0,12,0"
+                                Click="ReportBookButton_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Content="Жалоба на книгу" />
+
+                        <Button Width="140"
+                                Margin="0,0,12,0"
+                                Click="ReportAuthorButton_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Content="Жалоба на автора" />
+
+                        <Button x:Name="FreezeBookButton"
+                                Width="150"
+                                Visibility="Collapsed"
+                                Click="FreezeBookButton_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Content="Заморозить книгу" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="2"
+                    Margin="0,26,0,0"
+                    Padding="18"
+                    Background="White"
+                    CornerRadius="20">
+                <StackPanel>
+                    <TextBlock FontSize="22"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               Text="Текст книги" />
+                    <TextBox x:Name="BookTextTextBox"
+                             Margin="0,14,0,0"
+                             IsReadOnly="True"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             Style="{StaticResource MultilineTextBoxStyle}"
+                             Height="280" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3"
+                    Margin="0,26,0,0"
+                    Padding="18"
+                    Background="White"
+                    CornerRadius="20">
+                <StackPanel>
+                    <TextBlock FontSize="22"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource PrimaryTextBrush}"
+                               Text="Оставить отзыв" />
+
+                    <WrapPanel Margin="0,14,0,0">
+                        <TextBlock Margin="0,10,10,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   Text="Оценка" />
+                        <ComboBox x:Name="ReviewRatingComboBox"
+                                  Width="120"
+                                  SelectedValuePath="Tag"
+                                  Style="{StaticResource FilterComboBoxStyle}">
+                            <ComboBoxItem IsSelected="True" Tag="5">5</ComboBoxItem>
+                            <ComboBoxItem Tag="4">4</ComboBoxItem>
+                            <ComboBoxItem Tag="3">3</ComboBoxItem>
+                            <ComboBoxItem Tag="2">2</ComboBoxItem>
+                            <ComboBoxItem Tag="1">1</ComboBoxItem>
+                        </ComboBox>
+                    </WrapPanel>
+
+                    <TextBox x:Name="ReviewTextBox"
+                             Margin="0,14,0,0"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             Style="{StaticResource MultilineTextBoxStyle}"
+                             Height="110" />
+
+                    <Button Width="150"
+                            Margin="0,14,0,0"
+                            HorizontalAlignment="Left"
+                            Click="SaveReviewButton_Click"
+                            Style="{StaticResource AuthActionButtonStyle}"
+                            Content="Сохранить отзыв" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel Grid.Row="4"
+                        Margin="0,26,0,0">
+                <TextBlock FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource PrimaryTextBrush}"
+                           Text="Отзывы" />
+
+                <ItemsControl x:Name="ReviewsItemsControl"
+                              Margin="0,16,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,16"
+                                    Padding="16"
+                                    Background="White"
+                                    CornerRadius="18">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Left">
+                                            <TextBlock FontSize="18"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="{StaticResource PrimaryTextBrush}"
+                                                       Text="{Binding UserName}" />
+                                            <TextBlock Margin="0,4,0,0"
+                                                       Foreground="{StaticResource SecondaryTextBrush}"
+                                                       Text="{Binding Rating, StringFormat=оценка: {0}/5}" />
+                                        </StackPanel>
+
+                                        <TextBlock DockPanel.Dock="Right"
+                                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                                   Text="{Binding CreatedAt, StringFormat={}{0:dd.MM.yyyy HH:mm}}" />
+                                    </DockPanel>
+
+                                    <TextBlock Margin="0,12,0,0"
+                                               Foreground="{StaticResource PrimaryTextBrush}"
+                                               Text="{Binding ReviewText}"
+                                               TextWrapping="Wrap" />
+
+                                    <Border x:Name="ReviewFrozenBorder"
+                                            Margin="0,12,0,0"
+                                            Padding="10"
+                                            Visibility="Collapsed"
+                                            Background="#FBE4DC"
+                                            CornerRadius="12">
+                                        <TextBlock Foreground="{StaticResource AccentBrush}"
+                                                   Text="{Binding FreezeReason}"
+                                                   TextWrapping="Wrap" />
+                                    </Border>
+
+                                    <WrapPanel Margin="0,14,0,0">
+                                        <Button Width="150"
+                                                Margin="0,0,10,0"
+                                                Click="ReportReviewButton_Click"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Content="Жалоба на отзыв" />
+                                        <Button x:Name="FreezeReviewButton"
+                                                Width="160"
+                                                Visibility="Collapsed"
+                                                Click="FreezeReviewButton_Click"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Content="Заморозить отзыв" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsFrozen}" Value="True">
+                                    <Setter TargetName="ReviewFrozenBorder" Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CanAdminFreeze}" Value="True">
+                                    <Setter TargetName="FreezeReviewButton" Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

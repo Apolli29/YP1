@@ -14,5 +14,6 @@ namespace YP1.Models
         public bool IsFrozen { get; set; }
         public string FreezeReason { get; set; }
         public DateTime CreatedAt { get; set; }
+        public bool CanAdminFreeze { get; set; }
     }
 }
