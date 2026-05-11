@@ -65,7 +65,24 @@
                 Padding="26"
                 Background="{StaticResource PanelBrush}"
                 CornerRadius="28">
-            <TabControl>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border x:Name="DatabaseWarningBorder"
+                        Margin="0,0,0,16"
+                        Padding="14"
+                        Visibility="Collapsed"
+                        Background="#FBE4DC"
+                        CornerRadius="14">
+                    <TextBlock x:Name="DatabaseWarningTextBlock"
+                               Foreground="{StaticResource AccentBrush}"
+                               TextWrapping="Wrap" />
+                </Border>
+
+                <TabControl Grid.Row="1">
                 <TabItem Header="Вход">
                     <StackPanel Margin="18">
                         <TextBlock FontSize="26"
@@ -74,7 +91,7 @@
                                    Text="Авторизация" />
                         <TextBlock Margin="0,8,0,24"
                                    Foreground="{StaticResource SecondaryTextBrush}"
-                                   Text="Пока что окно работает в демонстрационном режиме." />
+                                   Text="Войди в готовый аккаунт или создай новый." />
 
                         <TextBlock Margin="0,0,0,6"
                                    Foreground="{StaticResource PrimaryTextBrush}"
@@ -89,9 +106,15 @@
                                      Style="{StaticResource PasswordBoxStyle}" />
 
                         <Button Margin="0,12,0,0"
+                                x:Name="LoginButton"
                                 Click="LoginButton_Click"
                                 Style="{StaticResource AuthActionButtonStyle}"
                                 Content="Войти" />
+
+                        <TextBlock Margin="0,18,0,0"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   Text="Тестовые аккаунты: admin/admin123, author1/author123, reader1/reader123" 
+                                   TextWrapping="Wrap" />
                     </StackPanel>
                 </TabItem>
 
@@ -103,7 +126,7 @@
                                    Text="Регистрация" />
                         <TextBlock Margin="0,8,0,24"
                                    Foreground="{StaticResource SecondaryTextBrush}"
-                                   Text="Позже сюда добавится запись нового пользователя в базу." />
+                                   Text="После регистрации сразу откроется основное окно." />
 
                         <TextBlock Margin="0,0,0,6"
                                    Foreground="{StaticResource PrimaryTextBrush}"
@@ -130,12 +153,14 @@
                                      Style="{StaticResource PasswordBoxStyle}" />
 
                         <Button Margin="0,12,0,0"
+                                x:Name="RegisterButton"
                                 Click="RegisterButton_Click"
                                 Style="{StaticResource AuthActionButtonStyle}"
                                 Content="Создать аккаунт" />
                     </StackPanel>
                 </TabItem>
-            </TabControl>
+                </TabControl>
+            </Grid>
         </Border>
     </Grid>
 </Window>
