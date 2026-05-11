@@ -56,13 +56,13 @@ namespace YP1
         private void FrozenButton_Click(object sender, RoutedEventArgs e)
         {
             PageTitleTextBlock.Text = "Предупреждение";
-            PageHost.Content = new FrozenWarningPage();
+            PageHost.Content = new FrozenWarningPage(this);
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             PageTitleTextBlock.Text = "Профиль";
-            PageHost.Content = new ProfilePage();
+            PageHost.Content = new ProfilePage(this);
         }
 
         private void OpenCatalog()
