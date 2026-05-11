@@ -1,0 +1,15 @@
+<UserControl x:Class="YP1.Pages.AuthorPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <StackPanel Margin="28">
+            <TextBlock FontSize="24"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource PrimaryTextBrush}"
+                       Text="Страница автора" />
+            <TextBlock Margin="0,8,0,0"
+                       Foreground="{StaticResource SecondaryTextBrush}"
+                       Text="Здесь будут книги автора, создание новых книг и работа с заморозками." />
+        </StackPanel>
+    </Grid>
+</UserControl>

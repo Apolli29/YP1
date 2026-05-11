@@ -1,28 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using YP1.Pages;
 
 namespace YP1
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            OpenCatalog();
+        }
+
+        private void CatalogButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenCatalog();
+        }
+
+        private void ListsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageTitleTextBlock.Text = "Списки книг";
+            PageHost.Content = new ReadingListsPage();
+        }
+
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageTitleTextBlock.Text = "Администрирование";
+            PageHost.Content = new AdminPage();
+        }
+
+        private void AuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageTitleTextBlock.Text = "Страница автора";
+            PageHost.Content = new AuthorPage();
+        }
+
+        private void FrozenButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageTitleTextBlock.Text = "Предупреждение";
+            PageHost.Content = new FrozenWarningPage();
+        }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageTitleTextBlock.Text = "Профиль";
+            PageHost.Content = new ProfilePage();
+        }
+
+        private void OpenCatalog()
+        {
+            PageTitleTextBlock.Text = "Каталог книг";
+            PageHost.Content = new CatalogPage();
         }
     }
 }
