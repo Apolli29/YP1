@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Background="{StaticResource SidebarBrush}"
-                BorderBrush="#B0B0B0"
+                BorderBrush="Brown"
                 BorderThickness="1">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -78,7 +78,7 @@
 
             <Border Padding="10"
                     Background="White"
-                    BorderBrush="#B0B0B0"
+                    BorderBrush="Brown"
                     BorderThickness="1">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Left">
