@@ -2,6 +2,7 @@ using System.Windows;
 using YP1.Data;
 using YP1.Models;
 using YP1.Pages;
+using YP1.Windows;
 
 namespace YP1
 {
@@ -62,6 +63,14 @@ namespace YP1
         {
             PageTitleTextBlock.Text = "Профиль";
             PageHost.Content = new ProfilePage(this);
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppSession.CurrentUser = null;
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+            Close();
         }
 
         private void OpenCatalog()

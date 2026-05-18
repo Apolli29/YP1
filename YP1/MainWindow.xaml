@@ -10,79 +10,63 @@
         Background="{StaticResource WindowBackgroundBrush}">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="220" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Border Background="{StaticResource SidebarBrush}"
                 BorderBrush="#B0B0B0"
                 BorderThickness="1">
-            <DockPanel>
-                <StackPanel Margin="0,10,0,10"
-                            VerticalAlignment="Top">
-                    <TextBlock Margin="0,0,0,14"
-                               HorizontalAlignment="Center"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Text="ЧП" />
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
+                <TextBlock Margin="0,0,0,14"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Text="Меню" />
+
+                <StackPanel Grid.Row="1">
                     <Button x:Name="CatalogButton"
-                            ToolTip="Каталог книг"
                             Click="CatalogButton_Click"
-                            Style="{StaticResource SidebarButtonStyle}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   FontSize="18"
-                                   Text="&#xE8D2;" />
-                    </Button>
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Каталог книг" />
 
                     <Button x:Name="ListsButton"
-                            ToolTip="Списки книг"
                             Click="ListsButton_Click"
-                            Style="{StaticResource SidebarButtonStyle}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   FontSize="18"
-                                   Text="&#xE14C;" />
-                    </Button>
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Списки книг" />
 
                     <Button x:Name="AdminButton"
-                            ToolTip="Администрирование"
                             Click="AdminButton_Click"
-                            Style="{StaticResource SidebarButtonStyle}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   FontSize="18"
-                                   Text="&#xE713;" />
-                    </Button>
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Администрирование" />
 
                     <Button x:Name="AuthorButton"
-                            ToolTip="Страница автора"
                             Click="AuthorButton_Click"
-                            Style="{StaticResource SidebarButtonStyle}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   FontSize="18"
-                                   Text="&#xE8D3;" />
-                    </Button>
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Страница автора" />
 
                     <Button x:Name="FrozenButton"
-                            ToolTip="Предупреждение о заморозке"
                             Click="FrozenButton_Click"
-                            Style="{StaticResource SidebarButtonStyle}">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   FontSize="18"
-                                   Text="&#xE7BA;" />
-                    </Button>
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Предупреждение" />
+
+                    <Button x:Name="ProfileButton"
+                            Click="ProfileButton_Click"
+                            Style="{StaticResource SidebarButtonStyle}"
+                            Content="Профиль" />
                 </StackPanel>
 
-                <Button x:Name="ProfileButton"
-                        Margin="0,0,0,10"
-                        VerticalAlignment="Bottom"
-                        ToolTip="Профиль"
-                        Click="ProfileButton_Click"
-                        Style="{StaticResource SidebarButtonStyle}">
-                    <TextBlock FontFamily="Segoe MDL2 Assets"
-                               FontSize="18"
-                               Text="&#xE77B;" />
-                </Button>
-            </DockPanel>
+                <Button x:Name="LogoutButton"
+                        Grid.Row="2"
+                        Click="LogoutButton_Click"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Content="Выход" />
+            </Grid>
         </Border>
 
         <Grid Grid.Column="1"
@@ -109,6 +93,7 @@
                     </StackPanel>
 
                     <TextBlock x:Name="CurrentUserTextBlock"
+                               Margin="0,0,10,0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
                                FontWeight="Bold"
