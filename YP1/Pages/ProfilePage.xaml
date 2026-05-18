@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Margin="28">
+        <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -10,42 +10,34 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Border Padding="20"
+            <Border Padding="12"
                     Background="White"
-                    CornerRadius="20">
+                    BorderBrush="#BFBFBF"
+                    BorderThickness="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="220" />
                     </Grid.ColumnDefinitions>
 
                     <StackPanel>
-                        <TextBlock FontSize="26"
-                                   FontWeight="SemiBold"
-                                   Foreground="{StaticResource PrimaryTextBrush}"
-                                   Text="Информация о пользователе" />
+                        <TextBlock FontSize="20"
+                                   FontWeight="Bold"
+                                   Text="Данные пользователя" />
                         <TextBlock x:Name="FullNameTextBlock"
-                                   Margin="0,18,0,0"
-                                   FontSize="18"
-                                   Foreground="{StaticResource PrimaryTextBrush}" />
+                                   Margin="0,12,0,0"
+                                   FontWeight="Bold" />
                         <TextBlock x:Name="LoginTextBlock"
-                                   Margin="0,8,0,0"
-                                   Foreground="{StaticResource SecondaryTextBrush}" />
+                                   Margin="0,6,0,0" />
                         <TextBlock x:Name="EmailTextBlock"
-                                   Margin="0,8,0,0"
-                                   Foreground="{StaticResource SecondaryTextBrush}" />
+                                   Margin="0,6,0,0" />
                         <TextBlock x:Name="RoleTextBlock"
-                                   Margin="0,8,0,0"
-                                   Foreground="{StaticResource SecondaryTextBrush}" />
+                                   Margin="0,6,0,0" />
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
-                        <TextBlock FontSize="18"
-                                   FontWeight="SemiBold"
-                                   Foreground="{StaticResource PrimaryTextBrush}"
-                                   Text="Действия" />
                         <Button x:Name="AuthorRequestButton"
-                                Margin="0,18,0,12"
+                                Margin="0,0,0,10"
                                 Click="AuthorRequestButton_Click"
                                 Style="{StaticResource AuthActionButtonStyle}"
                                 Content="Стать автором" />
@@ -59,52 +51,46 @@
 
             <Border x:Name="FreezeInfoBorder"
                     Grid.Row="1"
-                    Margin="0,20,0,0"
-                    Padding="18"
+                    Margin="0,12,0,0"
+                    Padding="12"
                     Visibility="Collapsed"
-                    Background="#FBE4DC"
-                    CornerRadius="18">
+                    Background="#FFF4D6"
+                    BorderBrush="#D8B96B"
+                    BorderThickness="1">
                 <StackPanel>
-                    <TextBlock FontSize="20"
-                               FontWeight="SemiBold"
-                               Foreground="{StaticResource AccentBrush}"
+                    <TextBlock FontWeight="Bold"
                                Text="Аккаунт заморожен" />
                     <TextBlock x:Name="FreezeReasonTextBlock"
-                               Margin="0,10,0,0"
-                               Foreground="{StaticResource AccentBrush}"
+                               Margin="0,6,0,0"
                                TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
 
             <TextBlock Grid.Row="2"
-                       Margin="0,22,0,14"
-                       FontSize="22"
-                       FontWeight="SemiBold"
-                       Foreground="{StaticResource PrimaryTextBrush}"
+                       Margin="0,14,0,10"
+                       FontSize="18"
+                       FontWeight="Bold"
                        Text="Мои отзывы" />
 
             <ItemsControl x:Name="ReviewsItemsControl"
                           Grid.Row="3">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="0,0,0,14"
-                                Padding="16"
+                        <Border Margin="0,0,0,10"
+                                Padding="10"
                                 Background="White"
-                                CornerRadius="18">
+                                BorderBrush="#BFBFBF"
+                                BorderThickness="1">
                             <StackPanel>
-                                <TextBlock FontSize="18"
-                                           FontWeight="SemiBold"
-                                           Foreground="{StaticResource PrimaryTextBrush}"
+                                <TextBlock FontWeight="Bold"
                                            Text="{Binding BookTitle}" />
+                                <TextBlock Margin="0,4,0,0"
+                                           Text="{Binding Rating, StringFormat=Оценка: {0}/5}" />
                                 <TextBlock Margin="0,6,0,0"
-                                           Foreground="{StaticResource SecondaryTextBrush}"
-                                           Text="{Binding Rating, StringFormat=оценка: {0}/5}" />
-                                <TextBlock Margin="0,10,0,0"
-                                           Foreground="{StaticResource PrimaryTextBrush}"
                                            Text="{Binding ReviewText}"
                                            TextWrapping="Wrap" />
-                                <TextBlock Margin="0,10,0,0"
-                                           Foreground="{StaticResource SecondaryTextBrush}"
+                                <TextBlock Margin="0,6,0,0"
+                                           Foreground="Gray"
                                            Text="{Binding CreatedAt, StringFormat={}{0:dd.MM.yyyy HH:mm}}" />
                             </StackPanel>
                         </Border>
