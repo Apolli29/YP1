@@ -13,7 +13,7 @@
 
 При первом запуске приложение:
 
-1. выполняет скрипт [CreateDatabase.sql](/C:/Users/pelog/source/repos/YP1/YP1/Scripts/CreateDatabase.sql);
+1. выполняет скрипт [CreateDatabase.sql]
 2. создаёт базу `ReadWriteDontCheatDb`;
 3. заполняет её тестовыми данными.
 
