@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 
 namespace YP1.Data
@@ -11,7 +10,7 @@ namespace YP1.Data
 
         public DatabaseSeeder()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["LibraryConnection"].ConnectionString;
+            _connectionString = ConnectionStringResolver.GetLibraryConnectionString();
         }
 
         public void SeedDemoData()

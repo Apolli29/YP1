@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using YP1.Models;
@@ -13,7 +12,7 @@ namespace YP1.Data
 
         public LibraryRepository()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["LibraryConnection"].ConnectionString;
+            _connectionString = ConnectionStringResolver.GetLibraryConnectionString();
         }
 
         public UserModel Authenticate(string login, string password)

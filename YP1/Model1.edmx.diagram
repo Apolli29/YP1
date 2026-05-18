@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a41bbd30a3f4fbc81781ea7268023ff" Name="Diagram1">
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.AuthorApplications" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.BookListItems" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Books" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.FreezeAppeals" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Genres" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Reports" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Reviews" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Users" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_AuthorApplications_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_BookListItems_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_BookListItems_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_Books_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_Reviews_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_FreezeAppeals_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_Reports_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.FK_Reviews_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ReadWriteDontCheatDbModel.BookGenres" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
