@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0a41bbd30a3f4fbc81781ea7268023ff" Name="Diagram1">
+      <Diagram DiagramId="0a41bbd30a3f4fbc81781ea7268023ff" Name="Diagram1" ZoomLevel="34">
         <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.AuthorApplications" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.BookListItems" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ReadWriteDontCheatDbModel.Books" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />

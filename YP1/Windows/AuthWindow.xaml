@@ -24,9 +24,7 @@
                                FontWeight="Bold"
                                Foreground="{StaticResource PrimaryTextBrush}"
                                Text="Читай, Пиши и не спиши" />
-                    <TextBlock Margin="0,6,0,0"
-                               Foreground="{StaticResource SecondaryTextBrush}"
-                               Text="Учебное приложение для чтения книг и отзывов" />
+                    
                 </StackPanel>
 
                 <Border x:Name="DatabaseWarningBorder"
